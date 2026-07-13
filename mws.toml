@@ -49,16 +49,17 @@ drop = ["id"]
 [layers.rename]
 uid = "mws_id"
 geom = "geometry"
+ba_name = "basin_name"
 
 [[layers]]
 name = "terrain"
 type = "collection"
 url_template = "https://geoserver.core-stack.org:8443/geoserver/terrain/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=terrain%3A{district}_{tehsil}_cluster&outputFormat=application%2Fjson"
-drop = ["area_in_ha", "id"]
+drop = ["area_in_ha", "id", "bacode", "sbcode"]
 
 [layers.rename]
 uid = "mws_id"
-terrainClu = "terr_cluster_id"
+terrainClu = "cluster_id"
 valley_are = "valley_area"
 hill_slope = "hill_slope_area"
 geom = "geometry"
@@ -67,17 +68,24 @@ geom = "geometry"
 name = "aquifer"
 type = "collection"
 url_template = "https://geoserver.core-stack.org:8443/geoserver/aquifer/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=aquifer%3Aaquifer_vector_{district}_{tehsil}&outputFormat=application%2Fjson"
-drop = ["id", "area_in_ha"]
+drop = ["id", "area_in_ha", "test"]
 
 [layers.rename]
 uid = "mws_id"
 Age = "age"
-Lithology_ = "lithology_rename"
+Lithology_ = "lithology_type"
 Major_Aqui = "major_aquifer"
+Major_Aq_1 = "major_aquifer_code"
 Principal_ = "principal_aq_system_name"
-Recommende = "recommended_gwd_mngmnt_intrvntn"
-"yeild__" = "yeild_pct"
+Recommende = "recommended_class"
+"yeild__" = "yield_pct"
 geom = "geometry"
+newcode14 = "principal_aquifer_code"
+newcode43 = "major_aquifer_code"
+avg_mbgl = "decadal_avg_depth_mbgl"
+mbgl = "fractures_encountered_mbgl"
+per_cm = "quality_ec_microhomhos_per_cm"
+pa_order = "principal_aquifer_numeric_code"
 
 [[layers]]
 name = "soge"
@@ -105,7 +113,7 @@ geom = "geometry"
 name = "deltaG_well_depth"
 type = "collection"
 url_template = "https://geoserver.core-stack.org:8443/geoserver/mws_layers/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mws_layers%3AdeltaG_well_depth_{district}_{tehsil}&outputFormat=application%2Fjson"
-drop = ["area_in_ha", "id"]
+drop = ["area_in_ha", "id", "sbcode", "bacode"]
 
 [layers.rename]
 uid = "mws_id"
@@ -116,7 +124,7 @@ geom = "geometry"
 name = "cropping_intensity"
 type = "collection"
 url_template = "https://geoserver.core-stack.org:8443/geoserver/crop_intensity/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=crop_intensity%3A{district}_{tehsil}_intensity&outputFormat=application%2Fjson"
-drop = ["area_in_ha", "total_cropable_area_ever_hydroyear_2017_2024", "id"]
+drop = ["area_in_ha", "total_cropable_area_ever_hydroyear_2017_2024", "id", "sbcode", "bacode"]
 
 [layers.rename]
 uid = "mws_id"
@@ -127,7 +135,7 @@ geom = "geometry"
 name = "deltaG_fortnight"
 type = "collection"
 url_template = "https://geoserver.core-stack.org:8443/geoserver/mws_layers/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mws_layers%3AdeltaG_fortnight_{district}_{tehsil}&outputFormat=application%2Fjson"
-drop = ["area_in_ha", "id"]
+drop = ["area_in_ha", "id", "sbcode", "bacode"]
 resolution = "fortnightly"
 
 [layers.rename]
@@ -144,3 +152,26 @@ drop = ["OGC_FID", "id"]
 uid = "mws_id"
 area_in_ha = "area_ha"
 geom = "geometry"
+"drlb_*" = "drought_label_*"
+"drysp_*" = "dryspell_*"
+"frth0_*" = "drought_freq_t0_*"
+"frth1_*" = "drought_freq_t1_*"
+"frth2_*" = "drought_freq_t2_*"
+"frth3_*" = "drought_freq_t3_*"
+"inth0_*" = "drought_intensity_t0_*"
+"inth1_*" = "drought_intensity_t1_*"
+"inth2_*" = "drought_intensity_t2_*"
+"inth3_*" = "drought_intensity_t3_*"
+"kh_cr_*" = "kharif_cropped_ha_*"
+"m_ons_*" = "monsoon_onset_*"
+"pcr_k_*" = "pecentage_kharif_cropped_*"
+"rd*" = "rainfall_deviation_*"
+"t_wks_*" = "total_analysed_weeks_*"
+"w_mld_*" = "mild_drought_weeks_*"
+"w_mod_*" = "moderate_drought_weeks_*"
+"w_no_*" = "no_drought_weeks_*"
+"w_sev_*" = "severe_drought_weeks_*"
+
+
+[layers.scale]
+"kh_cr_*" = 100
