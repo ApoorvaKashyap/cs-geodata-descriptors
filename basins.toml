@@ -7,28 +7,25 @@
 # Resolution and temporal_pattern are auto-detected from STAC table:columns.
 
 
-entity = "waterbody"
-key = "wb_id"
+entity = "basin"
+key = "ba_id"
 geometry = "geometry"
-base = "pan_india_waterbodies"
-partition_by = "ba_name"
+base = "basin_vector"
+
 add_admin = true
 
 [[layers]]
-name = "pan_india_waterbodies"
+name = "basin_vector"
 type = "item"
-source = "/home/apoorva/CoREStack-Data/base_converted/new_wb.parquet"
-drop = ["OGC_FID", "category_sq_m"]
+source = "s3://geo-benchmark-data/stac_pan_india/basin.geojson"
 
 [layers.scale]
-area_in_ha = 0.0001
-"area_ha_*" = 0.0001
+area_in_ha = 100
 
 [layers.rename]
-total_area_m2 = "area_in_ha"
-"k_*" = "kharif_*"
-"kr_*" = "karif_rabi_*"
-"krz_*" = "kharif_rabi_zaid_*"
-"area_*" = "area_ha_*"
-geom = "geometry"
-basin = "ba_name"
+area_sqkm = "area_in_ha"
+shape_Leng = "shape_length"
+Shape_Area = "shape_area"
+ba_id = "basin_id"
+ba_name = "basin_name"
+objectid = "object_id"
