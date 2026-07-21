@@ -14,7 +14,7 @@
 # Outputs:
 #   mws/static.geoparquet      (partitioned by sub_basin via super layer)
 #   mws/annual.parquet
-#   mws/fortnightly.parquet
+#   mws/sub-annual.parquet
 #
 # URL_MAPPING = {
 #     "soge": "https://geoserver.core-stack.org:8443/geoserver/soge/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=soge%3Asoge_vector_{district}_{tehsil}&outputFormat=application%2Fjson",
@@ -141,7 +141,6 @@ name = "deltaG_fortnight"
 type = "collection"
 url_template = "https://geoserver.core-stack.org:8443/geoserver/mws_layers/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mws_layers%3AdeltaG_fortnight_{district}_{tehsil}&outputFormat=application%2Fjson"
 drop = ["area_in_ha", "id", "sbcode", "bacode", "wsconc"]
-resolution = "fortnightly"
 
 [layers.rename]
 uid = "mws_id"
