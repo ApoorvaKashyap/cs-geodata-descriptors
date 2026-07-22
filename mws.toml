@@ -41,12 +41,15 @@ add_admin = true # Spatial join to fill state/district/tehsil for rows with null
 
 [converted_files.static]
 partition_by = ["basin_name"]
+row_group_size = 22000
 
 [converted_files.annual]
 partition_by = ["basin_name"]
+row_group_size = 280000
 
 [converted_files.sub_annual]
 partition_by = ["basin_name", "year"]
+row_group_size = 280000
 
 
 [[layers]]

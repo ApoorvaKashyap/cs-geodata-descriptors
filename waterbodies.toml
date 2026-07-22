@@ -15,12 +15,15 @@ add_admin = true
 
 [converted_files.static]
 partition_by = ["ba_name"]
+row_group_size = 22000
 
 [converted_files.annual]
 partition_by = ["ba_name"]
+row_group_size = 280000
 
 [converted_files.sub_annual]
 partition_by = ["ba_name", "year"]
+row_group_size = 280000
 
 
 [[layers]]
