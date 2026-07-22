@@ -37,8 +37,17 @@ active_locations = "s3://geo-benchmark-data/metadata/mws_layer_version.csv"
 super_layer_source = "s3://geo-benchmark-data/stac_pan_india/basin.geojson"
 super_layer_key = "ba_id"
 super_field = "ba_name"
-partition_by ="basin_name"   # Partition by super field
 add_admin = true # Spatial join to fill state/district/tehsil for rows with null admin cols
+
+[converted_files.static]
+partition_by = ["basin_name"]
+
+[converted_files.annual]
+partition_by = ["basin_name"]
+
+[converted_files.sub_annual]
+partition_by = ["basin_name", "year"]
+
 
 [[layers]]
 name = "mws_boundaries"

@@ -11,8 +11,17 @@ entity = "waterbody"
 key = "wb_id"
 geometry = "geometry"
 base = "pan_india_waterbodies"
-partition_by = "ba_name"
 add_admin = true
+
+[converted_files.static]
+partition_by = ["ba_name"]
+
+[converted_files.annual]
+partition_by = ["ba_name"]
+
+[converted_files.sub_annual]
+partition_by = ["ba_name", "year"]
+
 
 [[layers]]
 name = "pan_india_waterbodies"
